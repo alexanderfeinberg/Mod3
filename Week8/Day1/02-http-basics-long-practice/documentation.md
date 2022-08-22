@@ -34,10 +34,10 @@ website. Move on to the next request/response documentation.
 ### Ask for a page that doesn't exist
 
 Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /something-doesnt-exist
+- Headers: text/html
+- Body: none
 
 Response components:
 - Status code:
