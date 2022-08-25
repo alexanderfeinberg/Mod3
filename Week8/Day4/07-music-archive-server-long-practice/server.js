@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const { stringify } = require('querystring');
 
 /* ============================ SERVER DATA ============================ */
 let artists = JSON.parse(fs.readFileSync('./seeds/artists.json'));
@@ -68,6 +69,76 @@ const server = http.createServer((req, res) => {
     /* ========================== ROUTE HANDLERS ========================== */
 
     // Your code here
+    if(req.method==='GET' && req.url === '/artists'){
+      res.statusCode = 200;
+      res.setHeader('Content-Type','application/json')
+      return res.end(JSON.stringify(artists))
+    }
+    if(req.method==='GET' && req.url.startsWith('/artists')){
+      const urlSplit = req.url.split('/')
+      if(urlSplit.length == 3){
+        const id = urlSplit[urlSplit.length-1]
+        const targetArtist = artists[id]
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json')
+        return res.end(JSON.stringify(targetArtist))
+
+      }
+
+    }
+    if(req.method==='POST' && req.url === '/artists'){
+      res.statusCode = 201;
+      const newArtistId  = getNewArtistId();
+      req.body['artistId'] = newArtistId
+      console.log(req.body)
+      artists[newArtistId] = req.body
+      res.setHeader('Content-Type','application/json')
+      return res.end(JSON.stringify(req.body))
+    }
+    if(req.method==='PUT' || req.method==='PATCH' && req.url.startsWith('/artist')){
+      const urlSplit = req.url.split('/')
+      if(urlSplit.length == 3){
+        res.statusCode = 200;
+        const id = urlSplit[urlSplit.length-1]
+        const targetArtist = artists[id]
+        for(key of Object.keys(req.body)){
+          targetArtist[key] = req.body[key]
+        }
+        res.setHeader('Content-Type','application/json')
+        return res.end(JSON.stringify(targetArtist))
+      }
+    }
+    if(req.method==='DELETE'  && req.url.startsWith('/artist')){
+      const urlSplit = req.url.split('/')
+      if(urlSplit.length == 3){
+        res.statusCode = 200;
+        const id = urlSplit[urlSplit.length-1]
+        delete artists[id]
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/plain-text');
+        return res.end("Successfully deleted")
+
+      }
+    }
+
+    if(req.method==='GET' && req.url.startsWith('/artists')){
+      const urlSplit = req.url.split('/')
+      if(urlSplit.length == 4 && urlSplit.includes('albums')){
+        const id = urlSplit[urlSplit.length-2]
+        const allAlbums = []
+        for(let key of Object.keys(albums)){
+          if(albums[key].artistId == id){
+            allAlbums.push(albums[key])
+          }
+
+        }
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json')
+        return res.end(JSON.stringify(allAlbums))
+      }
+    }
+
+
 
     res.statusCode = 404;
     res.setHeader('Content-Type', 'application/json');

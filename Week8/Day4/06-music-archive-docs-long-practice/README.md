@@ -100,166 +100,166 @@ Test this in Postman or by using `fetch` in the browser.
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /artists/:artistId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: artist obj
 
 ### Add an artist
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /artists
+- Headers: application/json
+- Body: arist obj
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: new created artist obj
 
 ### Edit a specified artist by artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: PUT/PATCH
+- URL: /artists.:artistId
+- Headers: application/json
+- Body: updated artist obj
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: new updated artist obj with an updated key with a value of the date and time the object was updated on
 
 ### Delete a specified artist by artistId
 
 Request components:
 
-- Method:
-- URL:
+- Method: DELETE
+- URL: /artist/:artistId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: obj with message telling user the artist has been deleted
 
 ### Get all albums of a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /artists/:artistId/albums
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: album object of desired artist
 
 ### Get a specific album's details based on albumId
 
 Request components:
 
-- Method:
-- URL:
+- Method:GET
+- URL: /albums/:albumId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: album object
 
 ### Add an album to a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /artists/:artistId/albums
+- Headers: application/json
+- Body: album obj data
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 201
+- Headers: application/json
+- Body: newly created album
 
 ### Edit a specified album by albumId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: PUT/PATCH
+- URL: /albums/:albumId
+- Headers: application/json
+- Body: album obj
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: album updated obj w/ updatedAt key specifying date and time the object was updated
 
 ### Delete a specified album by albumId
 
 Request components:
 
-- Method:
-- URL:
+- Method: DELETe
+- URL: /albums/:albumId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: json telling the album was successfully deleted
 
 ### Get all songs of a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /artists/:artistId/songs
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: song data obj
 
 ### Get all songs of a specific album based on albumId
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /albums/:albumId/songs
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: album song data
 
 ### Get all songs of a specified trackNumber
 
@@ -277,76 +277,76 @@ constrained by for this endpoint?
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /trackNumbers/:trackNumber/songs
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: application/json
+- Body: obj with all songs
 
 ### Get a specific song's details based on songId
 
 Request components:
 
-- Method:
-- URL:
+- Method: GET
+- URL: /songs/:songId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers:application/json
+- Body: song obj
 
 ### Add a song to a specific album based on albumId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /albums/:albumId/songs/
+- Headers:content-type: application/json
+- Body: song data
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 201
+- Headers: application/json
+- Body: new created song data
 
 ### Edit a specified song by songId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: PUT/PATCH
+- URL: /songs/:songID
+- Headers: content-type:application/json
+- Body: song data
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: content-type:application/json
+- Body: updated song obj w/ updatedAt key
 
 ### Delete a specified song by songId
 
 Request components:
 
-- Method:
-- URL:
+- Method: DELETE
+- URL: /songs/:songId
 - Headers:
 - Body:
 
 Response components:
 
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: content-type:application/json
+- Body: success message
 
 [http://localhost:5000]: http://localhost:5000
 [starter]: https://github.com/appacademy/practice-for-week-08-music-archive-docs-long-practice
