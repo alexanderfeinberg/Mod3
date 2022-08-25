@@ -3,7 +3,7 @@ function stretch(timeLeft) {
     if (timeLeft < 1000) {
 
       // if we dont have enough time to complete the action
-      // reject the promise with the reason 
+      // reject the promise with the reason
       reject('you dont have enough time to stretch')
 
     } else {
@@ -57,17 +57,26 @@ function liftWeights(timeLeft) {
 
 // refactor this function to handle Promises using async/await instead of
   // .then and .catch
-function workout(totalTime) {
-  stretch(totalTime)
-    .then(timeLeftAfterStretching => runOnTreadmill(timeLeftAfterStretching))
-    .then(timeLeftAfterRunning => liftWeights(timeLeftAfterRunning))
-    .then(res => console.log(`done working out with ${res/1000} seconds left`))
-    .catch(err => console.log('Error: ', err));
-}
+async function workout(totalTime) {
+  try{
+    totalTime = await stretch(totalTime)
+    console.log(totalTime)
+    totalTime = await runOnTreadmill(totalTime)
+    totalTime = await liftWeights(totalTime)
+    console.log(`done working out with ${totalTime/1000} seconds left`)
+  } catch (e){
+
+    console.log("Error: ", e)
+  }}
+//   stretch(totalTime)
+//     .then(timeLeftAfterStretching => runOnTreadmill(timeLeftAfterStretching))
+//     .then(timeLeftAfterRunning => liftWeights(timeLeftAfterRunning))
+//     .then(res => console.log(`done working out with ${res/1000} seconds left`))
+//     .catch(err => console.log('Error: ', err));
+// }
 
 
 /* ============================ TEST YOUR CODE ============================
-
 Comment in each invocation of your workout function below and run the file
 (node phase-2.js) to see if you get the expected output.
 */
@@ -84,7 +93,7 @@ Comment in each invocation of your workout function below and run the file
     // Error:  you dont have enough time to run on treadmill
 
 
-// workout(2000);
+workout(2000);
   // should print out the following:
     // done stretching
     // done running on treadmill
